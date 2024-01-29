@@ -12,6 +12,7 @@ import { COLORS, FONTS, SIZES, constants, icons, dummyData } from '../../constan
 import { useDispatch, useSelector } from 'react-redux'
 import { selectedTabSelector, setSelectedTab } from '../../reducers/tab'
 import Header from './Header'
+import MyCart from '../Cart/MyCart'
 
 const TabButton = ({ label, icons, isFocused, onPress, outerContainerStyle, innerContainerStyle }) => {
     return (
@@ -226,7 +227,7 @@ const MainLayout = ({ navigation }) => {
                                     item.label == constants.screens.search && <Search />
                                 }
                                 {
-                                    item.label == constants.screens.cart && <CartTab />
+                                    item.label == constants.screens.cart && <MyCart />
                                 }
                                 {
                                     item.label == constants.screens.favorites && <Favourite />

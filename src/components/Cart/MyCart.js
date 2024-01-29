@@ -7,6 +7,7 @@ import CartQuantityButton from '../Button/CartQuantityButton'
 import { SwipeListView } from 'react-native-swipe-list-view'
 import StepperInput from '../Item/StepperInput'
 import FooterTotal from '../Food/FooterTotal'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const MyCart = ({ navigation }) => {
     const [myListCart, setMyListCart] = useState(dummyData.myCart)
@@ -65,53 +66,57 @@ const MyCart = ({ navigation }) => {
                 rightOpenValue={-75}
                 renderItem={(data, rowMap) => {
                     return (
-                        <View
-                            style={{
-                                height: 100,
-                                backgroundColor: COLORS.lightGray2,
-                                ...styles.cartItemContainer
-                            }}
+                        <TouchableOpacity
+                            onPress={() => navigation.goBack()}
                         >
-                            <View style={{
-                                width: 90,
-                                height: 100,
-                                marginLeft: -10
-                            }}>
-                                <Image
-                                    source={data.item.image}
-                                    style={{
-                                        width: "100%",
-                                        height: "100%",
-                                        top: 10,
-                                        position: 'absolute'
-                                    }}
-                                    resizeMode="contain"
-                                />
-                            </View>
-                            <View style={{ flex: 1 }}>
-                                <Text style={{ ...FONTS.body3 }}>{data.item.name}</Text>
-                                <Text style={{ ...FONTS.h3, color: COLORS.primary }}>${data.item.price}</Text>
-                            </View>
-
                             <View
                                 style={{
-                                    flex: 1,
-                                    alignItems: 'flex-end',
-
+                                    height: 100,
+                                    backgroundColor: COLORS.lightGray2,
+                                    ...styles.cartItemContainer
                                 }}
                             >
-                                <StepperInput
-                                    containerStyle={{
-                                        height: 50,
-                                        width: 125,
-                                        backgroundColor: COLORS.white
+                                <View style={{
+                                    width: 90,
+                                    height: 100,
+                                    marginLeft: -10
+                                }}>
+                                    <Image
+                                        source={data.item.image}
+                                        style={{
+                                            width: "100%",
+                                            height: "100%",
+                                            top: 10,
+                                            position: 'absolute'
+                                        }}
+                                        resizeMode="contain"
+                                    />
+                                </View>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={{ ...FONTS.body3 }}>{data.item.name}</Text>
+                                    <Text style={{ ...FONTS.h3, color: COLORS.primary }}>${data.item.price}</Text>
+                                </View>
+
+                                <View
+                                    style={{
+                                        flex: 1,
+                                        alignItems: 'flex-end',
+
                                     }}
-                                    value={data.item.qty}
-                                    onAdd={() => setMyListCart(myListCart.map((item, index) => item.id == data.item.id ? { ...item, qty: item.qty + 1 } : item))}
-                                    onMins={() => setMyListCart(myListCart.map((item, index) => item.id == data.item.id ? { ...item, qty: item.qty > 1 ? item.qty - 1 : 1 } : item))}
-                                />
+                                >
+                                    <StepperInput
+                                        containerStyle={{
+                                            height: 50,
+                                            width: 125,
+                                            backgroundColor: COLORS.white
+                                        }}
+                                        value={data.item.qty}
+                                        onAdd={() => setMyListCart(myListCart.map((item, index) => item.id == data.item.id ? { ...item, qty: item.qty + 1 } : item))}
+                                        onMins={() => setMyListCart(myListCart.map((item, index) => item.id == data.item.id ? { ...item, qty: item.qty > 1 ? item.qty - 1 : 1 } : item))}
+                                    />
+                                </View>
                             </View>
-                        </View>
+                        </TouchableOpacity>
                     )
                 }}
                 renderHiddenItem={(data, rowMap) => (

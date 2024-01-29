@@ -70,10 +70,6 @@ const App = ({ navigation, router }) => {
 						component={MyCart}
 					/>
 					<Stack.Screen
-						name="MyCard"
-						component={MyCard}
-					/>
-					<Stack.Screen
 						name="AddCard"
 						component={AddCard}
 					/>
